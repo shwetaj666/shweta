@@ -1,0 +1,21 @@
+---
+- hosts:  database
+  tasks: 
+  - name:  install mysql
+    yum: 
+     name :  mysql-server
+     state :  latest
+
+  - name:  add mysql in firewall
+    firewalld: 
+     zone:  public
+     service:  mysql
+     permanent:  yes  
+     state:  enabled 
+     
+     
+  - name:  start mariadb service
+    service:
+     name:  mariadb
+     state:  started 
+     enabled:  yes        
